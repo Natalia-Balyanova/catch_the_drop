@@ -27,7 +27,7 @@ public class GameWindow extends JFrame {
         game_window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         game_window.setLocation(200,100);
         game_window.setSize(906,478);
-        game_window.setResizable(false);
+        game_window.setResizable(false); // отключаем возможность изменения размера рамки
         last_frame_time = System.nanoTime();
         GameField game_field = new GameField();
         game_field.addMouseListener(new MouseAdapter() {
@@ -54,13 +54,13 @@ public class GameWindow extends JFrame {
             }
         });
         game_window.add(game_field);
-        game_window.setVisible(true);
+        game_window.setVisible(true); //делаем видимой рамку
     }
     private static void onRepaint(Graphics g) {
         long current_time = System.nanoTime();
         float delta_time = (current_time - last_frame_time) * 0.000000001f;
         last_frame_time = current_time;
-        drop_top = drop_top + drop_v * delta_time;
+        drop_top = drop_top + drop_v * delta_time;  //направление + скорость капли
         g.drawImage(background, 0, 0, null);
         g.drawImage(drop, (int) drop_left, (int) drop_top, null);
         if(drop_top > game_window.getHeight())g.drawImage(game_over, 280, 120, null);
